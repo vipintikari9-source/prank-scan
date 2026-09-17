@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security Scan</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050505;color:#00ff66;font-family:monospace;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.card{width:min(92%,430px);border:1px solid #00ff66;border-radius:14px;padding:24px;background:#080808;box-shadow:0 0 25px #00ff6633}
+h1{text-align:center;font-size:25px;margin:0 0 20px}.line{margin:15px 0}.bar{height:18px;border:1px solid #00ff66;border-radius:10px;overflow:hidden}.fill{height:100%;width:0;background:#00ff66;box-shadow:0 0 12px #00ff66;transition:width .2s}
+#percent{text-align:center;margin:10px 0;font-size:20px}.terminal{min-height:145px;border:1px solid #173b25;padding:12px;font-size:13px;line-height:1.6;margin-top:18px;overflow:hidden}
+button{width:100%;margin-top:18px;padding:13px;background:#00ff66;color:#001b09;border:0;border-radius:8px;font-weight:bold;font-size:16px}
+#reveal{display:none;text-align:center;color:white}.emoji{font-size:55px}
+</style>
+</head>
+<body>
+<div class="card">
+<div id="scan">
+<h1>⚠️ SECURITY SCAN</h1>
+<div class="line">Target: FRIEND'S PHONE</div>
+<div class="line">Connecting to secure scanner...</div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div id="percent">0%</div>
+<div class="terminal" id="terminal"></div>
+</div>
+<div id="reveal">
+<div class="emoji">😂</div>
+<h1>PRANK!</h1>
+<p style="font-size:18px">Bhai, kuch hack nahi hua 😎</p>
+<p>Ye sirf ek fake prank scan tha.</p>
+<button onclick="location.reload()">Dobara Dekho 😈</button>
+</div>
+</div>
+<script>
+const fill=document.getElementById('fill'), percent=document.getElementById('percent'), terminal=document.getElementById('terminal');
+const msgs=["Initializing scan...","Checking connection...","Scanning device...","Analyzing security...","Checking files...","Finalizing scan..."];
+let p=0,i=0;
+const timer=setInterval(()=>{
+ p+=Math.floor(Math.random()*9)+4;if(p>100)p=100;
+ fill.style.width=p+"%";percent.textContent=p+"%";
+ if(i<msgs.length && p>=i*16){terminal.innerHTML+="<div>> "+msgs[i]+"</div>";i++}
+ if(p===100){clearInterval(timer);setTimeout(()=>{document.getElementById('scan').style.display='none';document.getElementById('reveal').style.display='block'},900)}
+},350);
+</script>
+</body>
+</html>
