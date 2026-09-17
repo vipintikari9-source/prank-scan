@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Scan</title>
+<style>
+body{background:#050505;color:#00ff66;font-family:monospace;text-align:center;padding:30px}
+.box{border:2px solid #00ff66;border-radius:15px;padding:25px;margin-top:40px}
+.bar{height:20px;border:1px solid #00ff66;border-radius:10px;margin:25px 0}
+.fill{height:100%;width:0;background:#00ff66}
+#done{display:none;color:white}
+</style>
+</head>
+<body>
+<div class="box" id="scan">
+<h1>⚠️ SECURITY SCAN</h1>
+<p>Connecting to scanner...</p>
+<p>Scanning device...</p>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<h2 id="num">0%</h2>
+<p id="msg">Initializing...</p>
+</div>
+
+<div class="box" id="done">
+<h1>😂 PRANK!</h1>
+<h2>Bhai, kuch hack nahi hua 😎</h2>
+<p>Ye sirf ek fake prank scan tha!</p>
+</div>
+
+<script>
+let n=0;
+let x=setInterval(()=>{
+ n+=5;
+ document.getElementById("fill").style.width=n+"%";
+ document.getElementById("num").innerText=n+"%";
+ document.getElementById("msg").innerText=
+ n<40?"Scanning device...":
+ n<80?"Checking security...":"Finalizing scan...";
+ if(n>=100){
+  clearInterval(x);
+  setTimeout(()=>{
+   document.getElementById("scan").style.display="none";
+   document.getElementById("done").style.display="block";
+  },700);
+ }
+},180);
+</script>
+</body>
+</html>
