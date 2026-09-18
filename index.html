@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Security Scan</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instagram Security</title>
 <style>
-body{background:#050505;color:#00ff66;font-family:monospace;text-align:center;padding:30px}
-.box{border:2px solid #00ff66;border-radius:15px;padding:25px;margin-top:40px}
-.bar{height:20px;border:1px solid #00ff66;border-radius:10px;margin:25px 0}
+body{margin:0;background:#050505;color:#00ff66;font-family:monospace;text-align:center}
+.box{margin:70px 20px;padding:25px;border:2px solid #00ff66;border-radius:15px}
+#result,#lock{display:none}
+#lock{position:fixed;inset:0;background:#050505;color:#ff3333;
+align-items:center;justify-content:center;flex-direction:column}
+h1{font-size:28px}
+.bar{height:18px;border:1px solid #00ff66;border-radius:10px}
 .fill{height:100%;width:0;background:#00ff66}
-#done{display:none;color:white}
 </style>
 </head>
 <body>
+
 <div class="box" id="scan">
 <h1>⚠️ SECURITY SCAN</h1>
-<p>Connecting to scanner...</p>
-<p>Scanning device...</p>
+<p>Connecting to Instagram security...</p>
 <div class="bar"><div class="fill" id="fill"></div></div>
 <h2 id="num">0%</h2>
-<p id="msg">Initializing...</p>
+<p id="msg">Scanning...</p>
 </div>
 
-<div class="box" id="done">
+<div id="lock">
+<h1>🚨 ALERT</h1>
+<h2>Your Instagram ID has been hacked!</h2>
+<p>Touch temporarily locked...</p>
+<p>Checking security...</p>
+</div>
+
+<div class="box" id="result">
 <h1>😂 PRANK!</h1>
 <h2>Bhai, kuch hack nahi hua 😎</h2>
-<p>Ye sirf ek fake prank scan tha!</p>
+<p>Ye sirf fake prank tha!</p>
 </div>
 
 <script>
 let n=0;
 let x=setInterval(()=>{
  n+=5;
- document.getElementById("fill").style.width=n+"%";
- document.getElementById("num").innerText=n+"%";
- document.getElementById("msg").innerText=
- n<40?"Scanning device...":
- n<80?"Checking security...":"Finalizing scan...";
+ fill.style.width=n+"%";
+ num.innerText=n+"%";
+ msg.innerText=n<50?"Scanning account...":"Checking security...";
  if(n>=100){
   clearInterval(x);
+  scan.style.display="none";
+  lock.style.display="flex";
   setTimeout(()=>{
-   document.getElementById("scan").style.display="none";
-   document.getElementById("done").style.display="block";
-  },700);
+   lock.style.display="none";
+   result.style.display="block";
+  },4000);
  }
 },180);
 </script>
